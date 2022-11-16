@@ -1,4 +1,4 @@
-<h1 align="center">ARES – Software Project | <b>Game Demo</b></h1>
+<h1 align="center">ARES – Software Project | Game Demo</h1>
 
 ## :gear: **Project**
 
@@ -23,11 +23,16 @@ Project developed using C++ and the Unity 3D framework, based on C#.
 
 ## :round_pushpin: **Getting started**
 
-//TODO
+First, open and run the AresUnityDemo project.  
+After, to execute the AresGameInput application:
+```
+cd AresGameInput
+sh run_application
+```
 
 ## :page_facing_up: **Documentation**
 
-See the [documentation](doc.md) for more implementation details, classes, messages and d structures.
+See the [documentation](doc.md) for more implementation details, classes, messages and data structures.
 
 ## :label: **License**
 
