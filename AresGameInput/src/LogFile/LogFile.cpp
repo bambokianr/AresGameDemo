@@ -22,7 +22,7 @@ string LogFile::getNowDateTime() {
 
 LogFile::LogFile() {
   string filename = LogFile::getNowDateTime();
-  this->file.open("AresGameInput/logs/" + filename + ".txt", ios::out);
+  this->file.open("logs/" + filename + ".txt", ios::out);
   this->file << setw(20) << "timestamp" << setw(15) << "source app" << "  " << "message" << endl;
 }
 
