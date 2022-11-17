@@ -22,7 +22,7 @@ Controls the main game variables - _gameTime_, _shotsFiredCount_ and _hitsOnTarg
 :black_small_square: `private void StartBackgroundServerSocket()`  
 Starts the server in the background from a new thread, keeping the `ServerSocket.ListenForIncommingMessages()` method running which waits for messages from the connected client.  
 
-:black_small_square: `private void SetGameStart()`
+:black_small_square: `private void SetGameStart()`  
 Starts the game, removing the initial text from the scene and inserting the player and targets.
 
 :black_small_square: `private IEnumerator SpawnTargets()`  
@@ -59,34 +59,34 @@ Initially, a movement between the horizontal, circular and sinus wave is randoml
 
 At every update method call, the function related to the movement itself is invoked, depending on which movement was randomly chosen.  
 
-:black_small_square: `private void InitializeHorizontalMovement()`
+:black_small_square: `private void InitializeHorizontalMovement()`  
 Sets the horizontal frequency movement given a defined interval.  
 
-:black_small_square: `private void InitializeCircularMovement()`
+:black_small_square: `private void InitializeCircularMovement()`  
 Sets frequency and amplitude of the circular movement given a defined interval.  
 
-:black_small_square: `private void InitializeSinusWaveMovement()`
+:black_small_square: `private void InitializeSinusWaveMovement()`  
 Sets frequency and amplitude of the sinus wave movement given a defined interval.  
 
-:black_small_square: `private void HandleHorizontalMovement()`
+:black_small_square: `private void HandleHorizontalMovement()`  
 Defines `transform.position` based on horizontal movement (_x_ and _z_ axes).  
 
-:black_small_square: `private void HandleCircularMovement()`
+:black_small_square: `private void HandleCircularMovement()`  
 Defines `transform.position` based on circular movement (_x_ and _y_ axes).  
 
-:black_small_square: `private void HandleSinusWaveMovement()`
+:black_small_square: `private void HandleSinusWaveMovement()`  
 Defines `transform.position` based on sinus wave movement (_x_, _y_ and _z_ axes).  
 
-:black_small_square: `private void OnCollisionEnter(Collision collision)`
+:black_small_square: `private void OnCollisionEnter(Collision collision)`  
 Controla o valor de `oppositeMovement`. Se há colisão com as paredes invisíveis, com o player ou com outro alvo, inverte-se o valor da variavel.  
 Controls the `oppositeMovement` value. If there is a collision with invisible walls, with the player or with another target, the value of the variable is inverted.  
 
-:black_small_square: `private void HandleHit()`
+:black_small_square: `private void HandleHit()`  
 Method called when the bullet hits a target. Removes the object from the scene and updates the value of the `hitsOnTargetsCount` variable, from the `UpdateHitsOnTargetsCount` method of _GameManager_ class.  
 
 #### - [_Player.cs_](AresUnityDemo/Assets/Scripts/Player.cs)
 
-:black_small_square: `public static void ControlCommand(string command)`
+:black_small_square: `public static void ControlCommand(string command)`  
 Translates the received command into player actions - both vehicle and weapon, changing the variables related to each input.  
 
 #### - [_Vehicle.cs_](AresUnityDemo/Assets/Scripts/Vehicle.cs)
@@ -122,7 +122,7 @@ Method that closes the text file. Called as soon as the application finishes exc
 
 #### - [_Message.cpp_](AresGameInput/src/Message/Message.cpp)
 
-:black_small_square: `string Message::translateInputToMessage(string input)`
+:black_small_square: `string Message::translateInputToMessage(string input)`  
 
 Converts user input commands to log file messages.
 
