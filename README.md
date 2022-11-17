@@ -24,7 +24,7 @@ Project developed using C++ and the Unity 3D framework, based on C#.
 ## :round_pushpin: **Getting started**
 
 First, open and run **AresUnityDemo** project.  
-Then, to execute **AresGameInput** application, inside **ARESGameDemo** folder, run the following commands in the terminal:
+Then, to execute **AresGameInput** application, inside **ARESGAmeDemo** folder, run the following commands in the terminal:
 
 ```console
 cd AresGameInput
