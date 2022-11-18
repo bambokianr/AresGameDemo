@@ -90,10 +90,31 @@ Method called when the bullet hits a target. Removes the object from the scene a
 Translates the received command into player actions - both vehicle and weapon, changing the variables related to each input.  
 
 #### - [_Vehicle.cs_](AresUnityDemo/Assets/Scripts/Vehicle.cs)
-<!-- TODO -->
+
+Use of `WheelColliders` - specific colliders for the vehicle's wheels, implementing a simplified movement system - the front wheels control the direction/steering (steer angle) and the rear wheels, the acceleration/throttle (motor torque).  
+
+:black_small_square: `private void SetSteering()`  
+Sets `steering` variable - force based on vertical input ('A' and 'D' keys).  
+
+:black_small_square: `private void SetThrottle()`  
+Sets `throttle` variable - force based on horizontal input ('W' and 'S' keys).  
+
+:black_small_square: `private void HandleSteerAngle()`  
+Applies `steering` to `steerAngle` of the vehicle's front wheels.
+
+:black_small_square: `private void HandleMotorTorque()`  
+Applies `throttle` to `motorTorque` of the vehicle's rear wheels.  
+
+:black_small_square: `private void HandleBrakeTorque()`  
+Applies `brakeForce` to `brakeTorque` of the vehicle's rear wheels if vertical input is zero.  
 
 #### - [_Weapon.cs_](AresUnityDemo/Assets/Scripts/Weapon.cs)
-<!-- TODO -->
+
+:black_small_square: `private void HandleMovement()`  
+Manages the horizontal (360°) and vertical (-10° to 60°) angular movements of the weapon from user inputs, using `Mathf.Clamp` method to limit the y-axis rotation to the defined range.  
+
+:black_small_square: `private void ShootRaycast()`  
+Instantiates the bullet prefab initially at the _ShotSpawn_ GameObject position - weapon barrel exit. Furthermore, from `Physics.Raycast`, identifies whether the collided object has the value "Target" as a tag - in this case, it calls `HandleHit` method of the _Target_ class.  
 
 #### - [_Bullet.cs_](AresUnityDemo/Assets/Scripts/Bullet.cs)
 
@@ -103,12 +124,15 @@ It's only illustrative, as the collision is implemented with the raycast method.
 #### &ensp;&ensp;&ensp;&ensp; :open_file_folder: AresGameInput
 
 ---
-<!-- TODO - descrever aplicação em geral e mencionar `main.cpp` -->
+
+#### - [_main.cpp_](AresGameInput/src/main.cpp)
+
+In `main.cpp`, the main function runs the application, creating and running two threads that handle both client and server messages - sending, receiving and saving to the text file - while the game is running.  
+At the end of the game, the system shall output the elapsed time since the begging, the number of shots fired and the number of hits on targets.  
 
 #### - [_LogFile.cpp_](AresGameInput/src/LogFile/LogFile.cpp)
 
 Class responsible for creating and modifying a new text file at each application execution. This log file saves all messages and data exchanged between `AresGameInput` and `AresUnityDemo`.  
-<!-- To understand all the messages and data exchanged between `AresGameInput` and `AresUnityDemo`, see Log file structure. -->
 
 :black_small_square: `LogFile::LogFile()`  
 Constructor that creates the log file inside the [logs](AresGameInput/logs/), naming it with the creation timestamp, and enable write permission.  
