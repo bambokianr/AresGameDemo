@@ -3,54 +3,49 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Vehicle : MonoBehaviour {
-  public float throttleForce, steeringForce, brakeForce;
   public WheelCollider wheelFrontLeft, wheelFrontRight, wheelBackLeft, wheelBackRight;
+  
+  private int steering;
+  private int throttle;
+
+  private int throttleForce = 2000;
+  private int steeringForce = 35;
+  private int brakeForce = 1000;
 
   static public int horizontalInput = 0;
   static public int verticalInput = 0;
-  static public bool isBraking = false;
-
-  void Start() {
-    throttleForce = 2000;
-    steeringForce = 35;
-    // maxSteerAngle = 35;
-    brakeForce = 1000;
-  }
 
   void Update() {
-    float steering = horizontalInput * steeringForce;
-    float throttle = verticalInput * throttleForce;
+    SetSteering();
+    SetThrottle();
 
-    //^ as rodas da frente controlam a direção
+    HandleSteerAngle();
+    HandleMotorTorque();
+    HandleBrakeTorque();
+  }
+
+  private void SetSteering() {
+    steering = horizontalInput * steeringForce;
+  }
+
+  private void SetThrottle() {
+    throttle = verticalInput * throttleForce;
+  }
+
+  private void HandleSteerAngle() {
     wheelFrontLeft.steerAngle = steering;
     wheelFrontRight.steerAngle = steering;
+  }
 
-    //^ as rodas de trás controlam o acelerador
+  private void HandleMotorTorque() {
     wheelBackLeft.motorTorque = throttle;
     wheelBackRight.motorTorque = throttle;
+  }
 
-    //^ freio é acionado
-    // if(Input.GetKey(KeyCode.Space)) {
-    if(isBraking) {
-      wheelBackLeft.brakeTorque = brakeForce;
-      wheelBackRight.brakeTorque = brakeForce;
-    }
+  private void HandleBrakeTorque() {
+    int brakeTorque = (verticalInput == 0) ? brakeForce : 0;
 
-    //^ freio para de ser acionado
-    // if(Input.GetKeyDown(KeyCode.Space)) {
-    if(!isBraking) {
-      wheelBackLeft.brakeTorque = 0;
-      wheelBackRight.brakeTorque = 0;
-    }
-
-    //^ acelerador não é acionado (teclas p/ frente e p/ trás)
-    // if(Input.GetAxis("Vertical") == 0) {
-    if(verticalInput == 0) {
-      wheelBackLeft.brakeTorque = brakeForce;
-      wheelBackRight.brakeTorque = brakeForce;
-    } else {
-      wheelBackLeft.brakeTorque = 0;
-      wheelBackRight.brakeTorque = 0;
-    }
+    wheelBackLeft.brakeTorque = brakeTorque;
+    wheelBackRight.brakeTorque = brakeTorque;
   }
 }

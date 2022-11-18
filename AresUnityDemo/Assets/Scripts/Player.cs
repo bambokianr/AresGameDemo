@@ -18,48 +18,49 @@ public class Player : MonoBehaviour {
   public static void ControlCommand(string command) {
     switch(command) {
       case MOVE_VEHICLE_FORWARD:
-        Vehicle.verticalInput = 1;
-        Vehicle.isBraking = false;
-        Debug.Log("move vehicle forward");
+        if(Vehicle.verticalInput == -1)
+          Vehicle.verticalInput = 0;  
+        else
+          Vehicle.verticalInput = 1;
         break;
       case MOVE_VEHICLE_BACKWARD:
-        Vehicle.verticalInput = -1;
-        Vehicle.isBraking = false;
-        Debug.Log("move vehicle backward");
+        if(Vehicle.verticalInput == 1)
+          Vehicle.verticalInput = 0;
+        else 
+          Vehicle.verticalInput = -1;
         break;
       case MOVE_VEHICLE_LEFT:
-        Vehicle.horizontalInput = -1;
-        Debug.Log("move vehicle left");
+        if(Vehicle.horizontalInput == 1) 
+          Vehicle.horizontalInput = 0; 
+        else 
+          Vehicle.horizontalInput = -1;
         break;
       case MOVE_VEHICLE_RIGHT:
-        Vehicle.horizontalInput = 1;
-        Debug.Log("move vehicle right");
+        if(Vehicle.horizontalInput == -1) 
+          Vehicle.horizontalInput = 0; 
+        else 
+          Vehicle.horizontalInput = 1;
         break;
       case BRAKE_VEHICLE:
-        Vehicle.isBraking = true;
         Vehicle.verticalInput = 0;
-        Debug.Log("brake vehicle");
         break;
+
       case MOVE_WEAPON_UP:
         Weapon.verticalInput = 1;
-        Debug.Log("move weapon up");
         break;
       case MOVE_WEAPON_DOWN:
         Weapon.verticalInput = -1;
-        Debug.Log("move weapon down");
         break;
       case MOVE_WEAPON_LEFT:
         Weapon.horizontalInput = -1;
-        Debug.Log("move weapon left");
         break;
       case MOVE_WEAPON_RIGHT:
         Weapon.horizontalInput = 1;
-        Debug.Log("move weapon right");
         break;
       case WEAPON_SHOOTING:
         Weapon.isShooting = true;
-        Debug.Log("weapon shooting");
         break;
+
       default: 
         break;
     }
