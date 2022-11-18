@@ -16,12 +16,16 @@ public class GameManager : MonoBehaviour {
   public GameObject targetPrefab;
   public static int numberOfTargets = 8;
 
+  private GameObject loadingText;
   private GameObject waitingForStartText;
   private GameObject player;
 
+  public Camera thirdPersonCamera;
+
   void Start() {
     gameStarted = false;
-    waitingForStartText = GameObject.Find("WaitingForStartText");
+    
+    loadingText = GameObject.Find("LoadingText");
     player = GameObject.Find("Player");
     player.SetActive(false);
 
@@ -71,9 +75,10 @@ public class GameManager : MonoBehaviour {
 
   private void SetGameStart() {
     gameStarted = true;
-    
-    Destroy(waitingForStartText);
 
+    thirdPersonCamera.enabled = false;
+    
+    Destroy(loadingText);
     player.SetActive(true);
     StartCoroutine(SpawnTargets());
   }
@@ -92,6 +97,7 @@ public class GameManager : MonoBehaviour {
       gameTime += Time.deltaTime;
     } else if(gameTime >= GAME_TIMEOUT || hitsOnTargetsCount == numberOfTargets || Input.GetKeyDown(KeyCode.Escape)) {
       ServerSocket.SendMessage("GAME OVER"  
+                               + "\n                                     Elapsed time: " + gameTime + " seconds  "
                                + "\n                                     Number of shots fired: " + shotsFiredCount 
                                + "\n                                     Number of hits on targets: " + hitsOnTargetsCount);
       SetGameOver();
