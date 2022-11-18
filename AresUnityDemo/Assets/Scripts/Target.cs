@@ -37,16 +37,16 @@ public class Target : MonoBehaviour {
   }
 
   private void InitializeHorizontalMovement() {
-    frequency = Random.Range(5f, 15f);
+    frequency = Random.Range(0.5f, 5f);
   }
 
   private void InitializeCircularMovement() {
-    frequency = Random.Range(1f, 3f);
+    frequency = Random.Range(0.25f, 2f);
     amplitude = Random.Range(0.5f, 2f);
   }
 
   private void InitializeSinusWaveMovement() {
-    frequency = Random.Range(1f, 4f);
+    frequency = Random.Range(0.25f, 3f);
     amplitude = Random.Range(0.5f, 2f);
   }
 
@@ -106,7 +106,7 @@ public class Target : MonoBehaviour {
   }
 
   public void HandleHit() {
-    Destroy(gameObject);
+    Destroy(gameObject, 1.5f);
     GameManager.UpdateHitsOnTargetsCount();
   }
 }
