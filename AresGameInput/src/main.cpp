@@ -41,8 +41,11 @@ void receiveAndSaveMessage() {
     receivedMessage = client.readMessage();
     logFile.writeMessageToFile(ARESUNITYDEMO, receivedMessage);
   }
- 
-  logFile.closeFile();
+  if(receivedMessage.substr(0, 9) == "GAME OVER") {
+    system("stty cooked");
+    cout << receivedMessage << endl;
+    logFile.closeFile();
+  }
 }
 
 int main() {
@@ -50,7 +53,7 @@ int main() {
   char isGameStarted = input.setAndGetKey();
 
   if (isGameStarted != 'y' && isGameStarted != 'Y') {
-    cout << endl << "OK, bye! :(" << endl;
+    cout << endl << "Ok, bye! :(" << endl;
     
     sendAndSaveMessage("CANCEL GAME");
 
@@ -61,9 +64,8 @@ int main() {
 
   sendAndSaveMessage("GAME START");
   
-  auto startGame = chrono::high_resolution_clock::now();
-
-  cout << endl << "Game started! Press keys to command the player." << endl;
+  cout << endl << "GAME START" << endl;
+  cout << "                                     Press keys to command the player." << endl;
 
   thread clientMessageThread(getSendAndSaveMessage);
   thread serverMessageThread(receiveAndSaveMessage);
@@ -71,11 +73,6 @@ int main() {
   serverMessageThread.join();
 
   client.closeConnectedSocket();
-
-  auto endGame = chrono::high_resolution_clock::now();
-  auto elapsedGameTime = chrono::duration_cast<chrono::nanoseconds>(endGame - startGame);
-
-  cout << endl << "Game over! - Elapsed time: " << fixed << setprecision(3) << elapsedGameTime.count() * 1e-9 << " seconds." << endl;
 
   return 0;
 }
