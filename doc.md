@@ -78,7 +78,6 @@ Defines `transform.position` based on circular movement (_x_ and _y_ axes).
 Defines `transform.position` based on sinus wave movement (_x_, _y_ and _z_ axes).  
 
 :black_small_square: `private void OnCollisionEnter(Collision collision)`  
-Controla o valor de `oppositeMovement`. Se há colisão com as paredes invisíveis, com o player ou com outro alvo, inverte-se o valor da variavel.  
 Controls the `oppositeMovement` value. If there is a collision with invisible walls, with the player or with another target, the value of the variable is inverted.  
 
 :black_small_square: `private void HandleHit()`  
@@ -185,3 +184,17 @@ Reads and returns the message received by the server.
 
 :black_small_square: `void ClientSocket::closeConnectedSocket()`  
 Ends client-server communication via socket communication.
+
+### :two: Future improvements
+
+#### &ensp;&ensp;&ensp;&ensp; :open_file_folder: AresUnityDemo
+
+1. add weapon sight;
+2. improve game scene visuals;
+3. allow switching between first and third person cameras by the player while running the game;
+4. smooth horizontal and vertical weapon rotation movements;
+
+#### &ensp;&ensp;&ensp;&ensp; :open_file_folder: AresGameInput
+
+1. allow continuous sending of an input command (press and hold a key);
+2. set most usual command keys for the player;
