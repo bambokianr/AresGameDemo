@@ -1,3 +1,6 @@
 #!/bin/sh
+echo Compiling C++ application...
 g++ src/main.cpp src/Input/Input.cpp src/ClientSocket/ClientSocket.cpp src/LogFile/LogFile.cpp src/Message/Message.cpp -o bin/app
+
+echo Running C++ application...
 ./bin/app
