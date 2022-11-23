@@ -3,15 +3,14 @@
 class XWindow {
   private:
     Display *dpy;
-    int scr;
-    Window root;
-    XEvent ev;
-
     Window win;
-    Window createWindow(int x, int y, int w, int h, int b);
+    XEvent ev;
+    Window createWindow(Window root, int screen);
+    void positionCursorInCenter();
+    void handleKeyCodeInputValue(int inputs[], int keycode, int value);
 
-    public:
-      XWindow(int xPos, int yPos, int width, int height, int borderWidth);
-      void handleEvent();
+    public: 
+      XWindow();
+      void handleEvent(int inputs[]);
       void cleanUp();
 };
